@@ -1,6 +1,6 @@
 ---
 title: "Fonology"
-subtitle: "Um pacote R para análise fonológica"
+subtitle: "An R package for phonological analysis"
 author: "Guilherme D. Garcia"
 institute: "• Université Laval •"
 date: ""
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 class: inverse, center, middle
 
 # Fonology
-## Um pacote R para análise fonológica
+## An R package for phonological analysis
 ### Guilherme D. Garcia
 
 <img src="ULaval2.png" alt="Université Laval" style="width:7%">
@@ -53,33 +53,33 @@ xaringanExtra::use_extra_styles(
 ```
 
 
-## O que é 🤔
+## What is it? 🤔
 
 <img src="fonology.png" alt="Fonology" style="width:15%; float: right">
-- Um pacote em R com diversas funções (específicas e gerais)
-- Atualmente em desenvolvimento (v. 0.5.1); atualizações frequentes
+- An R package with a number of functions (general and language-specific)
+- Currently under development; frequent updates
 
-- **Hoje**: demo das principais funções com exemplos reais
-
---
-
-## Motivação
-
-> Automatizar codificação e processamento de dados fonológicos
+- **This presentation**: demo of main functions
 
 --
 
-## Conteúdo
+## Goal
 
-- Componente **analítico**: velocidade e precisão (escalabilidade)
-- Componente **didático**: interatividade e acessibilidade 
+> Automate data prep for phonological analysis
+
+--
+
+## Content
+
+- **Research**: speed and precision (scalability)
+- **Teaching**: accessibility and interactivity
 
 ---
 
-## Instalação etc. 🧐
+## Installation etc. 🧐
 
-- Visite [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology) para informações e demos detalhadas
-- Para instalar o pacote, é necessário ter o pacote `devtools`:
+- Visit [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology) for detailed info
+- To install the package:
 
 ```{r, echo=T, eval=FALSE}
 library(devtools) # install.packages("devtools")
@@ -88,57 +88,57 @@ install_github("guilhermegarcia/fonology")
 
 --
 
-## Feedback, bugs, dúvidas 🪲
+## Feedback, bugs, questions 🪲
 
-- Crie uma entrada em [github.com/guilhermegarcia/fonology/issues](https://github.com/guilhermegarcia/fonology/issues)
+- Go here: [github.com/guilhermegarcia/fonology/issues](https://github.com/guilhermegarcia/fonology/issues)
 
 --
 
-## Premissa para hoje
+## Assumption of this presentation
 
-- Familiaridade básica com R e com a família `tidyverse`
+- You know some basic R and are familiar with `tidyverse`
 
 ---
 
-## De grafemas a fonemas 📜
+## From graphemes to phonemes 📜
 
-> *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+> *Little can be done without grapheme-phoneme conversion*
 
 <br>
-- <h-l>Dados escritos</h-l>: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
-- Transcrição fonêmica: ponto de partida **essencial** 
+- <h-l>Written data</h-l>: easy to find and collect, difficult to analyze
+- Phonemic transcription: **essential** starting point
 
 --
 
-## Hoje
+## These slides
 
-- Demo das principais funções:
-1. <h-l>Transcrição fonêmica</h-l>
+- Demo of main functions:
+1. <h-l>Phonemic transcription</h-l>
 --
 
-2. Extração de acento/sílaba, constituintes silábicos
+2. Extraction of stress/syllables, syllabic constituents
 --
 
-3. Cálculo e visualização de sonoridade
+3. Sonority
 --
 
-4. Trapézio vocálico
+4. Vowel trapezoids
 --
 
-5. Classes naturais
+5. Natural classes
 --
 
-6. Gerador de palavras + probabilidade fonotática
+6. Word generator (pt) + phonotactic probability
 --
 
-7. Formantes + `ggplot2`
+7. Vowel formants + `ggplot2` (simple *wrapper*)
 
 
 ---
 
-## Exemplo 1: transcrição ampla
+## Example 1: broad transcription
 
-- `ipa_pt(...)`: transcrição de palavras do português
+- `ipa_pt(...)`: phonemic transcription for Portuguese
 
 ```{r, echo = TRUE}
 library(Fonology)
@@ -151,12 +151,12 @@ ipa_pt("parangaricutirrimirruaro")
 
 --
 
-- Função **não vetorizada** (i.e., serial): ideal para *um* input
-- <h-l>Diferencial</h-l>: atribuição probabilística de acento, útil para palavras novas
+- **Not vectorized** (i.e., serial): ideal for *one* input
+- <h-l>Advantage</h-l>: probabilistic stress assignment, useful for nonce words
 
 ---
 
-## Exemplo 2: transcrição fina
+## Example 2: narrow transcription
 
 - `ipa_pt(..., narrow = T)`
 
@@ -167,46 +167,48 @@ ipa_pt("quiséssemos", narrow = T)
 ipa_pt("parangaricutirrimirruaro", narrow = T)
 ```
 
-- Função **não vetorizada** (i.e., serial): ideal para *um* input
-- <h-l>Diferencial</h-l>: acento é atribuído **probabilisticamente**, útil para palavras novas
+- **Not vectorized** (i.e., serial): ideal for *one* input
+- <h-l>Advantage</h-l>: probabilistic stress assignment, useful for nonce words
+
 
 ---
 
-## Exemplo 3: transcrição em massa
+## Example 3: transcription *en masse*
 
-- <h-l>Essencial</h-l>: poder transcrever grandes quantidades de palavras
-- `ipa_pt_vec(...)`: transcrição vetorizada
+- <h-l>Crucial</h-l>: being able to transcribe a lot of words *quickly*
+- `ipa_pt_vec(...)`: vectorized
 
 
 ```{r, echo = TRUE}
-ipa_pt_vec(word = c("Exemplo", "com", "múltiplas", "palavras"))
+ipa_pt_vec(word = c("Example", "com", "múltiplas", "palavras"))
 ```
 
 --
 
-- Transcrição fina também disponível:
+- Narrow transcription also available:
 
 ```{r, echo = TRUE}
 ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
 ```
 
-- Função **vetorizada** (i.e., paralela): ideal para *muitos* dados
-- <h-l>Diferencial</h-l>: velocidade (*mas* acento é atribuído **categoricamente**)
+- **Vectorized** function (i.e., parallel): ideal for a lot of data
+- <h-l>Advantage</h-l>: speed (*but* stress is assigned **categorically**)
 
 
 ---
 
-## Exemplo 4: texto curto 💬
+## Example 4: short text 💬
 
-- `ipa_pt_vec()` exige um input tokenizado
-- E se nosso input for um texto...?
-- <mark>`cleanText()`</mark>: limpeza e tokenização
+- `ipa_pt_vec()` requires tokenized inputs
+- What if our input is a text...?
+- <mark>`cleanText()`</mark>: data cleaning and tokenization
 
 ```{r, echo = TRUE, message = F, tidy=FALSE}
-library(tidyverse) # Para usarmos %>% + outras funções mais tarde
-texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
+library(tidyverse)
+# Sample sentence in Portuguese with some weird stuff in it:
+text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-texto %>% 
+text %>% 
   cleanText() %>% #<<
   ipa_pt_vec()
 
@@ -214,15 +216,15 @@ texto %>%
 
 ---
 
-## Exemplo 5: texto curto em tabela 💬
+## Example 5: from short text to tibble 💬
 
-- Normalmente, análises começam com *data frames* ou *tibbles*
+- We often work with *data frames* or *tibbles*
 
 ```{r, echo = TRUE}
-texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
+text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-tabela = tibble(palavra = texto %>% cleanText()) %>% # Coluna com palavras
-  mutate(ipa = palavra %>% ipa_pt_vec()) # Coluna com transcrição
+d = tibble(word = text %>% cleanText()) %>% # Words
+  mutate(ipa = word %>% ipa_pt_vec()) # IPA
 
 ```
 
@@ -230,7 +232,7 @@ tabela = tibble(palavra = texto %>% cleanText()) %>% # Coluna com palavras
 
 ```{r, echo = F, message = F}
 library(kableExtra)
-tabela %>% 
+d %>% 
   slice(1:6) %>% 
   kable(booktabs = T) %>% 
   kable_styling()
@@ -238,36 +240,36 @@ tabela %>%
 
 ---
 
-## Exemplo 6: texto longo em tabela 📚
+## Example 6: from long text to tibble 📚
 
-- `getStress()`: extração de acento a partir de transcrição
-- `stopwords_pt`: lista de palavras funcionais
-- <mark>`syllable()`</mark>: extração de constituintes silábicos
+- `getStress()`: extracts stress from transcription
+- `stopwords_pt`: stopwords in Portuguese (adapted from `tm` package)
+- <mark>`syllable()`</mark>: extracts syllabic constituents
 
 ```{r, echo = T}
-lus1 = read_lines("lusiadas.txt") # Importamos o texto integral
+lus1 = read_lines("lusiadas.txt") # "Os Lusíadas" text
 
 lus2 = lus1 %>% 
-  cleanText() %>% # Limpamos e tokenizamos o texto 
+  cleanText() %>% # data cleaning + tokenization
   as_tibble() %>% 
   rename(word = value) %>% 
-  filter(!word %in% stopwords_pt) %>% # Removemos stopwords
-  mutate(ipa = ipa_pt_vec(word), # Criamos uma coluna para transcrição
-         stress = getStress(ipa), # outra para o acento
-         finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
+  filter(!word %in% stopwords_pt) %>% # stopword removal
+  mutate(ipa = ipa_pt_vec(word), # column for transcription
+         stress = getStress(ipa), # column for stress
+         finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
          onsetFin = syllable(finSyl, const = "onset"), #<<
          nucFin = syllable(finSyl, const = "nucleus"), #<<
          codaFin = syllable(finSyl, const = "coda"), #<<
-         rimaFin = syllable(finSyl, const = "rhyme")) #<<
+         rhFin = syllable(finSyl, const = "rhyme")) #<<
 ```
 
 --
 
-⏱️ total para executar o código acima: **< 2s** (M1 Pro)
+⏱️ total time to run code above: **< 2s** (on an M1 Pro laptop)
 
 ---
 
-## Exemplo 6: texto longo em tabela 📚
+## Example 6: from long text to tibble 📚
 
 ```{r, echo = F}
 lus2 %>% 
@@ -278,8 +280,8 @@ lus2 %>%
 
 --
 
-- Total de `r nrow(lus2)` palavras lexicais
-- Glides são onsets, codas, ou estão no núcleo...❓ 
+- Total number of lexical words: `r nrow(lus2)`
+- Should we count glides as onsets, ocdas... nuclei❓ 
 
 --
 
@@ -289,22 +291,24 @@ lus2 %>%
 
 ---
 
-## Exemplo 7: sonoridade 🔉
+## Example 7: sonority 🔉
 
-- `demi(word = ..., d = ...)`: extração de demissílabas (`d` = `1` ou `2`)
+- `demi(word = ..., d = ...)`: extraction of demisyllables (`d` = `1` or `2`)
 
 ```{r}
 syllables = c("kom", "sil", "fran", "klas")
 
 demis = syllables %>% 
-  demi(d = 1) # extrair primeira demissílaba de cada sílaba
+  demi(d = 1) # get first demisyllable
 
 demis
 ```
 
---
+---
 
-- Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
+## Example 7: sonority 🔉
+
+- We can also calculate the average sonority dispersion of a vector with `meanSonDisp()`:
 
 ```{r}
 syllables %>% 
@@ -312,13 +316,15 @@ syllables %>%
   meanSonDisp()
 ```
 
-- **Nota**: A função usa 17 níveis de sonoridade (ver Parker 2011)
+- **Note**: The function assumes 17 levels of sonority (see Parker 2011)<sup>1</sup>
+
+.footnote[[1] Parker, S. (2011). Sonority. In M. van Oostendorp, C. J. Ewen, E. Hume, & K. Rice (Eds.), *The Blackwell companion to phonology* (pp. 1160–1184). Wiley Online Library. https://doi.org/10.1002/9781444335262.wbctp0049]
 
 ---
 
-## Exemplo 8: sonoridade 🔊
+## Example 8: sonority 🔊
 
-- Para o ensino de fonologia: visualizar o princípio de sonoridade pode ser útil
+- When teaching phonology, it may be useful to visualize sonority levels:
 
 .pull-left[
 
@@ -342,10 +348,10 @@ syllables %>%
 
 ---
 
-## Exemplo 9: trapézio vocálico
+## Example 9: vowel trapezoids
 
-- `plotVowels()` gera trapézios para algumas línguas
-- A função também exporta opcionalmente o arquivo `tex` para quem utiliza $\LaTeX$
+- `plotVowels()` generates trapezoids for some languages
+- It also exports the `tex` file for those who use $\LaTeX$
 
 .pull-left[
 
@@ -368,9 +374,9 @@ plotVowels(lg = "Italian",
 
 ---
 
-## Exemplo 10: classes naturais e traços distintivos 
+## Example 10: natural classes and distinctive features
 
-- De fonemas a traços usando `getFeat()`:
+- From phonemes to traits $\rightarrow$ `getFeat()`:
 
 ```{r}
 getFeat(ph = c("i", "u"), lg = "English")
@@ -380,7 +386,7 @@ getFeat(ph = c("i", "y", "u"), lg = "French")
 
 --
 
-- De traços a fonemas usando `getPhon()`:
+- From traits to phonemes $\rightarrow$ `getPhon()`:
 
 ```{r}
 getPhon(ft = c("+syl", "+hi"), lg = "French")
@@ -390,9 +396,9 @@ getPhon(ft = c("-son", "+vce"), lg = "Spanish")
 
 ---
 
-## Exemplo 11: gerador de palavras e probabilidade fonotática 🎲
+## Example 11: word generator and phonotactic probability 🎲
 
-- `wug_pt()` cria palavras
+- `wug_pt()` creates possible words in Portuguese
 
 ```{r}
 set.seed(1)
@@ -401,27 +407,26 @@ wug_pt(profile = "LHL")
 
 --
 
-- Vamos criar uma tabela com 8 palavras novas + probabilidade fonotática com `biGram_pt()`:
+- Let's create a tibble with 8 new words + their phonotactic probability with <mark>`biGram_pt()`</mark>:
 
 ```{r, message = F}
 set.seed(1)
-gerador = tibble(palavra = character(8)) %>% # Criamos espaço para 8 palavras
-  mutate(palavra = wug_pt("LHL", n = 8), # Especificamos o perfil de peso
-         bigrama = palavra %>% 
+gen = tibble(word = wug_pt("LHL", n = 8)) %>% 
+  mutate(bigram = word %>% 
            biGram_pt() #<<
   ) 
 ```
 
 ---
 
-## Exemplo 11: gerador de palavras e probabilidade fonotática 🎲
+## Example 11: word generator and phonotactic probability 🎲
 
 .pull-left[
-- Bigramas menores $\rightarrow$ menos prováveis
+- Lower bigram values $\rightarrow$ less probable
 
 ```{r, echo = F}
-gerador %>% 
-  arrange(desc(bigrama)) %>% 
+gen %>% 
+  arrange(desc(bigram)) %>% 
   kable(booktabs = T) %>% 
   kable_styling(full_width = F)
 ```
@@ -430,9 +435,9 @@ gerador %>%
 --
 
 .pull-right[
-- Bigramas calculados com base no [PSL](https://gdgarcia.ca/psl)
-- Acesse o léxico simplificado com `pt_lex`
-- Ou o léxico completo com `psl`
+- Bigrams are calculated based on [PSL](https://gdgarcia.ca/psl)
+- Access the simplified version of the lexicon with `pt_lex`
+- Or the whole lexicon with `psl`
 
 ```{r}
 set.seed(1)
@@ -442,7 +447,7 @@ pt_lex %>% sample_n(5)
 
 ---
 
-## Exemplo 12: Listando bigramas 🎲
+## Example 12: Listing bigrams 🎲
 
 .pull-left[
 ```{r, echo = T}
@@ -463,26 +468,26 @@ lus_bigramas %>%
 --
 
 .pull-right[
-- <mark>`biGram_tbl()`</mark> $\rightarrow$ todos os bigramas
-- Assim, podemos facilmente plotar padrões
+- <mark>`biGram_tbl()`</mark> $\rightarrow$ all bigrams
+- Now it's easy to plot patterns
 
 
-### Visualizando bigramas
+### Visualizing bigrams
 
-- Em conjunto com `biGram_tbl()`:
-- <mark>`plot_biGrams()`</mark> $\rightarrow$ gráficos com `ggplot2`
+- Together with `biGram_tbl()`:
+- <mark>`plot_biGrams()`</mark> $\rightarrow$ figures with `ggplot2`
 
 
-- Duas opções de gráficos para a função:
-  1. `type = "heat"`
-  2. `type = "lollipop"`
+- Two options:
+1. `type = "heat"`
+2. `type = "lollipop"`
 
-- Em ambas, definimos o número de bigramas `n`
+- In both, we define the number of bigrams `n`
 ]
 
 ---
 
-## Exemplo 12: Vizualisando bigramas 🎲
+## Example 12: Visualizing bigrams 🎲
 
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
@@ -504,9 +509,9 @@ lus_bigramas %>%
 
 
 
-## Exemplo 13: gráfico de vogais 🗣️
+## Example 13: vowel plot 🗣️
 
-- Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos): 
+- A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values): 
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
@@ -516,9 +521,9 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Exemplo 13: gráfico de vogais 🗣️
+## Example 13: vowel plot 🗣️
 
-- Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos):
+- A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values): 
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
@@ -529,14 +534,14 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Nota sobre o *pipe*
+## Note on the *pipe*
 
-- Desde a versão **4.1**, o R possui um pipe nativo: `|>` (cf. `%>%` do pacote `magrittr`)
-- Em análises com <h-l>altíssima quantidade</h-l> de dados, prefira `|>`
+- Since version **4.1**, R offers a native pipe: `|>` (cf. `%>%` from `magrittr`)
+- If you have <h-l>a ton of data</h-l>, favor `|>`
 --
 
-- `Fonology`: internamente, apenas `|>`; externamente, ambos os pipes podem ser usados
-  - É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
+- `Fonology`: internally, only `|>` is used; externally, both pipes are fine
+- You can change the default pipe (to use the shortcuts `Ctrl+Shift+m` or `Cmd+Shift+m`):
 
 <br>
 
@@ -549,13 +554,13 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 class: inverse, center, middle
 
-# Fim
+# The end
 
 ```{r}
 ipa_pt("obrigado", narrow = T) %>% str_c("!")
 ```
 
-O projeto se beneficiou do programa ENVOL (Université Laval). Maiores informações em [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+This project has benefitted from the ENVOL program (Université Laval). More info at [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
 
 <br>
 

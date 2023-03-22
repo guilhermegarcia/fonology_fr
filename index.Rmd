@@ -561,7 +561,3 @@ ipa_pt("obrigado", narrow = T) %>% str_c("!")
 ```
 
 This project has benefitted from the ENVOL program (Université Laval). More info at [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
-
-<br>
-
-<img src="qr.png" alt="QR" style="width:30%">

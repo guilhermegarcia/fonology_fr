@@ -18,7 +18,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xc3b1986100b44329913af86833174c8","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xad4aff585c7483f8fe81c41e170d88f","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -72,7 +72,7 @@ class: inverse, center, middle
 ## What is it? 🤔
 
 &lt;img src="fonology.png" alt="Fonology" style="width:15%; float: right"&gt;
-- An R package with a number of functions (general and language-specific)
+- An R package to help phonologists automate certain tasks
 - Currently under development; frequent updates
 
 - **This presentation**: demo of main functions
@@ -168,7 +168,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
 ```
 
 --
@@ -191,7 +191,7 @@ ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
 #&gt; [1] "ki.ˈzɛ.se.mʊs"
 ipa_pt("parangaricutirrimirruaro", narrow = T)
-#&gt; [1] "pa.ˌɾãŋ.ga.ˌɾi.ku.ˌt͡ʃi.xi.ˌmi.xu.ˈa.ɾʊ"
+#&gt; [1] "ˌpa.ɾãŋ.ˌga.ɾi.ˌku.t͡ʃi.ˌxi.mi.ˈxu.a.ɾʊ"
 ```
 
 - **Not vectorized** (i.e., serial): ideal for *one* input

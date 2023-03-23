@@ -22,7 +22,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x314eb064edf4988b714b6c2c03ad0b4","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"e8594037b3144849ba47b55d98a26f72","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -244,8 +244,8 @@ library(tidyverse)
 # Sample sentence in Portuguese with some weird stuff in it:
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-text %&gt;% 
-* cleanText() %&gt;%
+text |&gt; 
+* cleanText() |&gt;
   ipa_pt_vec()
 #&gt;  [1] "ˈes.te"          "ˈɛ"              "ˈum"             "ˈtes.to"        
 #&gt;  [5] "bas.ˈtan.te"     "ˈkuɾ.to"         "ˈke"             "ˈnãw̃"           
@@ -262,8 +262,8 @@ text %&gt;%
 ```r
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-d = tibble(word = text %&gt;% cleanText()) %&gt;% # Words
-  mutate(ipa = word %&gt;% ipa_pt_vec()) # IPA
+d = tibble(word = text |&gt; cleanText()) |&gt; # Words
+  mutate(ipa = word |&gt; ipa_pt_vec()) # IPA
 ```
 
 --
@@ -315,11 +315,11 @@ d = tibble(word = text %&gt;% cleanText()) %&gt;% # Words
 ```r
 lus1 = read_lines("lusiadas.txt") # "Os Lusíadas" text
 
-lus2 = lus1 %&gt;% 
-  cleanText() %&gt;% # data cleaning + tokenization
-  as_tibble() %&gt;% 
-  rename(word = value) %&gt;% 
-  filter(!word %in% stopwords_pt) %&gt;% # stopword removal
+lus2 = lus1 |&gt; 
+  cleanText() |&gt; # data cleaning + tokenization
+  as_tibble() |&gt; 
+  rename(word = value) |&gt; 
+  filter(!word %in% stopwords_pt) |&gt; # stopword removal
   mutate(ipa = ipa_pt_vec(word), # column for transcription
          stress = getStress(ipa), # column for stress
          finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
@@ -425,7 +425,7 @@ lus2 = lus1 %&gt;%
 ```r
 syllables = c("kom", "sil", "fran", "klas")
 
-demis = syllables %&gt;% 
+demis = syllables |&gt; 
   demi(d = 1) # get first demisyllable
 
 demis
@@ -440,8 +440,8 @@ demis
 
 
 ```r
-syllables %&gt;% 
-  demi(d = 1) %&gt;% 
+syllables |&gt; 
+  demi(d = 1) |&gt; 
   meanSonDisp()
 #&gt; [1] 2.67
 ```
@@ -460,8 +460,8 @@ syllables %&gt;%
 
 
 ```r
-"combradol" %&gt;% 
-  ipa_pt() %&gt;% 
+"combradol" |&gt; 
+  ipa_pt() |&gt; 
 * plotSon(syl = F)
 ```
 
@@ -474,8 +474,8 @@ syllables %&gt;%
 
 
 ```r
-"pontilhonde" %&gt;% 
-  ipa_pt() %&gt;% 
+"pontilhonde" |&gt; 
+  ipa_pt() |&gt; 
 * plotSon(syl = T)
 ```
 
@@ -564,8 +564,8 @@ wug_pt(profile = "LHL")
 
 ```r
 set.seed(1)
-gen = tibble(word = wug_pt("LHL", n = 8)) %&gt;% 
-  mutate(bigram = word %&gt;% 
+gen = tibble(word = wug_pt("LHL", n = 8)) |&gt; 
+  mutate(bigram = word |&gt; 
 *          biGram_pt()
   ) 
 ```
@@ -631,7 +631,7 @@ gen = tibble(word = wug_pt("LHL", n = 8)) %&gt;%
 
 ```r
 set.seed(1)
-pt_lex %&gt;% sample_n(5)
+pt_lex |&gt; sample_n(5)
 #&gt; # A tibble: 5 × 2
 #&gt;   word             pro                   
 #&gt;   &lt;fct&gt;            &lt;chr&gt;                 
@@ -650,9 +650,9 @@ pt_lex %&gt;% sample_n(5)
 .pull-left[
 
 ```r
-lus_bigramas = lus1 %&gt;% 
-  cleanText() %&gt;% 
-  ipa_pt_vec() %&gt;% 
+lus_bigramas = lus1 |&gt; 
+  cleanText() |&gt; 
+  ipa_pt_vec() |&gt; 
 * biGram_tbl()
 ```
 
@@ -754,7 +754,7 @@ lus_bigramas = lus1 %&gt;%
 .pull-left[
 
 ```r
-lus_bigramas %&gt;% 
+lus_bigramas |&gt; 
 * plot_biGrams(type = "lollipop", n = 10)
 ```
 
@@ -766,7 +766,7 @@ lus_bigramas %&gt;%
 .pull-right[
 
 ```r
-lus_bigramas %&gt;% 
+lus_bigramas |&gt; 
 * plot_biGrams(type = "heat", n = 50)
 ```
 
@@ -808,31 +808,13 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Note on the *pipe*
-
-- Since version **4.1**, R offers a native pipe: `|&gt;` (cf. `%&gt;%` from `magrittr`)
-- If you have &lt;h-l&gt;a ton of data&lt;/h-l&gt;, favor `|&gt;`
---
-
-- `Fonology`: internally, only `|&gt;` is used; externally, both pipes are fine
-- You can change the default pipe (to use the shortcuts `Ctrl+Shift+m` or `Cmd+Shift+m`):
-
-&lt;br&gt;
-
-&lt;div align = "center"&gt;
-&lt;img src="pipe.png" alt="pipe" style="width:70%;"&gt;
-&lt;/div&gt;
-
-
----
-
 class: inverse, center, middle
 
 # The end
 
 
 ```r
-ipa_pt("obrigado", narrow = T) %&gt;% str_c("!")
+ipa_pt("obrigado", narrow = T) |&gt; str_c("!")
 #&gt; [1] "ˌo.bɾi.ˈga.dʊ!"
 ```
 

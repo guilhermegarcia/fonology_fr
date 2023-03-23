@@ -208,8 +208,8 @@ library(tidyverse)
 # Sample sentence in Portuguese with some weird stuff in it:
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-text %>% 
-  cleanText() %>% #<<
+text |> 
+  cleanText() |> #<<
   ipa_pt_vec()
 
 ```
@@ -223,8 +223,8 @@ text %>%
 ```{r, echo = TRUE}
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
-d = tibble(word = text %>% cleanText()) %>% # Words
-  mutate(ipa = word %>% ipa_pt_vec()) # IPA
+d = tibble(word = text |> cleanText()) |> # Words
+  mutate(ipa = word |> ipa_pt_vec()) # IPA
 
 ```
 
@@ -232,9 +232,9 @@ d = tibble(word = text %>% cleanText()) %>% # Words
 
 ```{r, echo = F, message = F}
 library(kableExtra)
-d %>% 
-  slice(1:6) %>% 
-  kable(booktabs = T) %>% 
+d |> 
+  slice(1:6) |> 
+  kable(booktabs = T) |> 
   kable_styling()
 ```
 
@@ -249,11 +249,11 @@ d %>%
 ```{r, echo = T}
 lus1 = read_lines("lusiadas.txt") # "Os Lusíadas" text
 
-lus2 = lus1 %>% 
-  cleanText() %>% # data cleaning + tokenization
-  as_tibble() %>% 
-  rename(word = value) %>% 
-  filter(!word %in% stopwords_pt) %>% # stopword removal
+lus2 = lus1 |> 
+  cleanText() |> # data cleaning + tokenization
+  as_tibble() |> 
+  rename(word = value) |> 
+  filter(!word %in% stopwords_pt) |> # stopword removal
   mutate(ipa = ipa_pt_vec(word), # column for transcription
          stress = getStress(ipa), # column for stress
          finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
@@ -272,9 +272,9 @@ lus2 = lus1 %>%
 ## Example 6: from long text to tibble 📚
 
 ```{r, echo = F}
-lus2 %>% 
-  slice(1:5) %>% 
-  kable(booktabs = T) %>% 
+lus2 |> 
+  slice(1:5) |> 
+  kable(booktabs = T) |> 
   kable_styling()
 ```
 
@@ -298,7 +298,7 @@ lus2 %>%
 ```{r}
 syllables = c("kom", "sil", "fran", "klas")
 
-demis = syllables %>% 
+demis = syllables |> 
   demi(d = 1) # get first demisyllable
 
 demis
@@ -311,8 +311,8 @@ demis
 - We can also calculate the average sonority dispersion of a vector with `meanSonDisp()`:
 
 ```{r}
-syllables %>% 
-  demi(d = 1) %>% 
+syllables |> 
+  demi(d = 1) |> 
   meanSonDisp()
 ```
 
@@ -329,8 +329,8 @@ syllables %>%
 .pull-left[
 
 ```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
-"combradol" %>% 
-  ipa_pt() %>% 
+"combradol" |> 
+  ipa_pt() |> 
   plotSon(syl = F) #<<
 ```
 ]
@@ -340,8 +340,8 @@ syllables %>%
 .pull-right[
 
 ```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
-"pontilhonde" %>% 
-  ipa_pt() %>% 
+"pontilhonde" |> 
+  ipa_pt() |> 
   plotSon(syl = T) #<<
 ```
 ]
@@ -411,8 +411,8 @@ wug_pt(profile = "LHL")
 
 ```{r, message = F}
 set.seed(1)
-gen = tibble(word = wug_pt("LHL", n = 8)) %>% 
-  mutate(bigram = word %>% 
+gen = tibble(word = wug_pt("LHL", n = 8)) |> 
+  mutate(bigram = word |> 
            biGram_pt() #<<
   ) 
 ```
@@ -425,9 +425,9 @@ gen = tibble(word = wug_pt("LHL", n = 8)) %>%
 - Lower bigram values $\rightarrow$ less probable
 
 ```{r, echo = F}
-gen %>% 
-  arrange(desc(bigram)) %>% 
-  kable(booktabs = T) %>% 
+gen |> 
+  arrange(desc(bigram)) |> 
+  kable(booktabs = T) |> 
   kable_styling(full_width = F)
 ```
 ]
@@ -441,7 +441,7 @@ gen %>%
 
 ```{r}
 set.seed(1)
-pt_lex %>% sample_n(5)
+pt_lex |> sample_n(5)
 ```
 ]
 
@@ -451,16 +451,16 @@ pt_lex %>% sample_n(5)
 
 .pull-left[
 ```{r, echo = T}
-lus_bigramas = lus1 %>% 
-  cleanText() %>% 
-  ipa_pt_vec() %>% 
+lus_bigramas = lus1 |> 
+  cleanText() |> 
+  ipa_pt_vec() |> 
   biGram_tbl() #<<
 ```
 
 ```{r, echo = F}
-lus_bigramas %>% 
-  slice(1:8) %>% 
-  kable(booktabs = T) %>% 
+lus_bigramas |> 
+  slice(1:8) |> 
+  kable(booktabs = T) |> 
   kable_styling(full_width = F)
 ```
 ]
@@ -491,7 +491,7 @@ lus_bigramas %>%
 
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
-lus_bigramas %>% 
+lus_bigramas |> 
   plot_biGrams(type = "lollipop", n = 10) #<<
 ```
 ]
@@ -500,7 +500,7 @@ lus_bigramas %>%
 
 .pull-right[
 ```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
-lus_bigramas %>% 
+lus_bigramas |> 
   plot_biGrams(type = "heat", n = 50) #<<
 ```
 ]
@@ -534,30 +534,12 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Note on the *pipe*
-
-- Since version **4.1**, R offers a native pipe: `|>` (cf. `%>%` from `magrittr`)
-- If you have <h-l>a ton of data</h-l>, favor `|>`
---
-
-- `Fonology`: internally, only `|>` is used; externally, both pipes are fine
-- You can change the default pipe (to use the shortcuts `Ctrl+Shift+m` or `Cmd+Shift+m`):
-
-<br>
-
-<div align = "center">
-<img src="pipe.png" alt="pipe" style="width:70%;">
-</div>
-
-
----
-
 class: inverse, center, middle
 
 # The end
 
 ```{r}
-ipa_pt("obrigado", narrow = T) %>% str_c("!")
+ipa_pt("obrigado", narrow = T) |> str_c("!")
 ```
 
 This project has benefitted from the ENVOL program (Université Laval). More info at [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)

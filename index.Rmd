@@ -12,7 +12,7 @@ output:
       highlight: haddock
       ratio: '16:9'
       center: true
-      slideNumberFormat: "%current% de %total%"
+      slideNumberFormat: "%current% of %total%"
       highlightLines: true
       countIncrementalSlides: false
     seal: false

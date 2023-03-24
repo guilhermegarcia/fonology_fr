@@ -55,7 +55,7 @@ xaringanExtra::use_extra_styles(
 
 ## What is it? 🤔
 
-<img src="fonology.png" alt="Fonology" style="wtexidth:15%; float: right">
+<img src="fonology.png" alt="Fonology" style="width:15%; float: right">
 - An R package to help phonologists automate certain tasks
 - Currently under development; frequent updates
 
@@ -100,19 +100,10 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## From graphemes to phonemes 📜
+## Road map
 
-> *Little can be done without grapheme-phoneme conversion*
+### Demo of main functions:
 
-<br>
-- <h-l>Written data</h-l>: easy to find and collect, difficult to analyze
-- Phonemic transcription: **essential** starting point
-
---
-
-## These slides
-
-- Demo of main functions:
 1. <h-l>Phonemic transcription</h-l>
 --
 
@@ -133,6 +124,29 @@ install_github("guilhermegarcia/fonology")
 
 7. Vowel formants + `ggplot2` (simple *wrapper*)
 
+
+--
+
+***
+
+
+<br>
+
+> *Little can be done without grapheme-phoneme conversion*
+
+<br>
+- <h-l>Written data</h-l>: easy to find and collect, difficult to analyze
+- Phonemic transcription: **essential** starting point
+
+
+---
+
+class: inverse, center, middle
+
+# Main functions
+
+
+<img src="cat.gif" alt="pipe" style="width:30%;">
 
 ---
 
@@ -452,7 +466,7 @@ pt_lex |> sample_n(5)
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa_pt_vec() |> 
-  biGram_tbl() #<<
+  biGramTbl() #<<
 ```
 
 ```{r, echo = F}
@@ -466,14 +480,14 @@ lus_bigramas |>
 --
 
 .pull-right[
-- <mark>`biGram_tbl()`</mark> $\rightarrow$ all bigrams
+- <mark>`biGramTbl()`</mark> $\rightarrow$ all bigrams
 - Now it's easy to plot patterns
 
 
 ### Visualizing bigrams
 
-- Together with `biGram_tbl()`:
-- <mark>`plot_biGrams()`</mark> $\rightarrow$ figures with `ggplot2`
+- Together with `biGramTbl()`:
+- <mark>`plotBiGrams()`</mark> $\rightarrow$ figures with `ggplot2`
 
 
 - Two options:
@@ -490,7 +504,7 @@ lus_bigramas |>
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plot_biGrams(type = "lollipop", n = 10) #<<
+  plotBiGrams(type = "lollipop", n = 10) #<<
 ```
 ]
 
@@ -499,7 +513,7 @@ lus_bigramas |>
 .pull-right[
 ```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plot_biGrams(type = "heat", n = 50) #<<
+  plotBiGrams(type = "heat", n = 50) #<<
 ```
 ]
 
@@ -532,12 +546,11 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-class: inverse, center, middle
-
 # The end
 
-```{r}
-ipa_pt("obrigado", narrow = T) |> str_c("!")
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
+ipa_pt("obrigado") |> 
+  plotSon(syl = T)
 ```
 
 This project has benefitted from the ENVOL program (Université Laval). More info at [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)

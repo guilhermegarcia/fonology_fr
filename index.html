@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6ace7366d0a4849ae3dc3e6ec19b12f","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xd9ea2fffd3d43dfa8f515ff923f610f","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -72,7 +72,7 @@ class: inverse, center, middle
 
 ## What is it? 🤔
 
-&lt;img src="fonology.png" alt="Fonology" style="wtexidth:15%; float: right"&gt;
+&lt;img src="fonology.png" alt="Fonology" style="width:15%; float: right"&gt;
 - An R package to help phonologists automate certain tasks
 - Currently under development; frequent updates
 
@@ -118,19 +118,10 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## From graphemes to phonemes 📜
+## Road map
 
-&gt; *Little can be done without grapheme-phoneme conversion*
+### Demo of main functions:
 
-&lt;br&gt;
-- &lt;h-l&gt;Written data&lt;/h-l&gt;: easy to find and collect, difficult to analyze
-- Phonemic transcription: **essential** starting point
-
---
-
-## These slides
-
-- Demo of main functions:
 1. &lt;h-l&gt;Phonemic transcription&lt;/h-l&gt;
 --
 
@@ -151,6 +142,29 @@ install_github("guilhermegarcia/fonology")
 
 7. Vowel formants + `ggplot2` (simple *wrapper*)
 
+
+--
+
+***
+
+
+&lt;br&gt;
+
+&gt; *Little can be done without grapheme-phoneme conversion*
+
+&lt;br&gt;
+- &lt;h-l&gt;Written data&lt;/h-l&gt;: easy to find and collect, difficult to analyze
+- Phonemic transcription: **essential** starting point
+
+
+---
+
+class: inverse, center, middle
+
+# Main functions
+
+
+&lt;img src="cat.gif" alt="pipe" style="width:30%;"&gt;
 
 ---
 
@@ -649,7 +663,7 @@ pt_lex |&gt; sample_n(5)
 lus_bigramas = lus1 |&gt; 
   cleanText() |&gt; 
   ipa_pt_vec() |&gt; 
-* biGram_tbl()
+* biGramTbl()
 ```
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
@@ -726,14 +740,14 @@ lus_bigramas = lus1 |&gt;
 --
 
 .pull-right[
-- &lt;mark&gt;`biGram_tbl()`&lt;/mark&gt; `\(\rightarrow\)` all bigrams
+- &lt;mark&gt;`biGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` all bigrams
 - Now it's easy to plot patterns
 
 
 ### Visualizing bigrams
 
-- Together with `biGram_tbl()`:
-- &lt;mark&gt;`plot_biGrams()`&lt;/mark&gt; `\(\rightarrow\)` figures with `ggplot2`
+- Together with `biGramTbl()`:
+- &lt;mark&gt;`plotBiGrams()`&lt;/mark&gt; `\(\rightarrow\)` figures with `ggplot2`
 
 
 - Two options:
@@ -751,7 +765,7 @@ lus_bigramas = lus1 |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plot_biGrams(type = "lollipop", n = 10)
+* plotBiGrams(type = "lollipop", n = 10)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
@@ -763,7 +777,7 @@ lus_bigramas |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plot_biGrams(type = "heat", n = 50)
+* plotBiGrams(type = "heat", n = 50)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
@@ -804,15 +818,15 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-class: inverse, center, middle
-
 # The end
 
 
 ```r
-ipa_pt("obrigado", narrow = T) |&gt; str_c("!")
-#&gt; [1] "ˌo.bɾi.ˈga.dʊ!"
+ipa_pt("obrigado") |&gt; 
+  plotSon(syl = T)
 ```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 This project has benefitted from the ENVOL program (Université Laval). More info at [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
     </textarea>

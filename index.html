@@ -22,7 +22,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"c6913e05edde47c49cf26d15292f3ea7","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"e0f383206e834cf8aef6a3a67b0dd483","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -171,7 +171,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
 ```
 
 --
@@ -308,6 +308,7 @@ d = tibble(word = text |&gt; cleanText()) |&gt; # Words
 ## Example 6: from long text to tibble 📚
 
 - `getStress()`: extracts stress from transcription
+- `getSyl()`: extracts a given syllable
 - `stopwords_pt`: stopwords in Portuguese (adapted from `tm` package)
 - &lt;mark&gt;`syllable()`&lt;/mark&gt;: extracts syllabic constituents
 
@@ -329,9 +330,6 @@ lus2 = lus1 |&gt;
 *        rhFin = syllable(finSyl, const = "rhyme"))
 ```
 
---
-
-⏱️ total time to run code above: **&lt; 2s** (on an M1 Pro laptop)
 
 ---
 
@@ -406,7 +404,7 @@ lus2 = lus1 |&gt;
 
 --
 
-- Total number of lexical words: 32618
+- Total number of lexical words: 32618 (⏱️ total time to run code above: **&lt; 2s**)
 - Should we count glides as onsets, ocdas... nuclei❓ 
 
 --

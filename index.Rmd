@@ -243,6 +243,7 @@ d |>
 ## Example 6: from long text to tibble 📚
 
 - `getStress()`: extracts stress from transcription
+- `getSyl()`: extracts a given syllable
 - `stopwords_pt`: stopwords in Portuguese (adapted from `tm` package)
 - <mark>`syllable()`</mark>: extracts syllabic constituents
 
@@ -263,9 +264,6 @@ lus2 = lus1 |>
          rhFin = syllable(finSyl, const = "rhyme")) #<<
 ```
 
---
-
-⏱️ total time to run code above: **< 2s** (on an M1 Pro laptop)
 
 ---
 
@@ -280,7 +278,7 @@ lus2 |>
 
 --
 
-- Total number of lexical words: `r nrow(lus2)`
+- Total number of lexical words: `r nrow(lus2)` (⏱️ total time to run code above: **< 2s**)
 - Should we count glides as onsets, ocdas... nuclei❓ 
 
 --

@@ -55,7 +55,7 @@ xaringanExtra::use_extra_styles(
 
 ## What is it? 🤔
 
-<img src="fonology.png" alt="Fonology" style="width:15%; float: right">
+<img src="fonology.png" alt="Fonology" style="wtexidth:15%; float: right">
 - An R package to help phonologists automate certain tasks
 - Currently under development; frequent updates
 
@@ -349,7 +349,7 @@ syllables |>
 ## Example 9: vowel trapezoids
 
 - `plotVowels()` generates trapezoids for some languages
-- It also exports the `tex` file for those who use $\LaTeX$
+- It also exports the <mark>`tex`</mark> file for those who use $\LaTeX$
 
 .pull-left[
 

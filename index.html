@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xdc073dbb7e643e4a02fdf4de3050b7c","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x5d0d8e2224749618c582bc3f2c6e291","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -183,7 +183,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
 ```
 
 --
@@ -664,7 +664,7 @@ pt_lex |&gt; sample_n(5)
 lus_bigramas = lus1 |&gt; 
   cleanText() |&gt; 
   ipa() |&gt; 
-* biGramTbl()
+* nGramTbl(n = 2)
 ```
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
@@ -710,8 +710,8 @@ lus_bigramas = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; #k &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; k &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6845 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0196115 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6849 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0196230 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #a &lt;/td&gt;
@@ -741,14 +741,14 @@ lus_bigramas = lus1 |&gt;
 --
 
 .pull-right[
-- &lt;mark&gt;`biGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` all bigrams
+- &lt;mark&gt;`nGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` all bigrams
 - Now it's easy to plot patterns
 
 
 ### Visualizing bigrams
 
-- Together with `biGramTbl()`:
-- &lt;mark&gt;`plotBiGrams()`&lt;/mark&gt; `\(\rightarrow\)` figures with `ggplot2`
+- Together with `nGramTbl()`:
+- &lt;mark&gt;`plotnGrams()`&lt;/mark&gt; `\(\rightarrow\)` figures with `ggplot2`
 
 
 - Two options:
@@ -766,7 +766,7 @@ lus_bigramas = lus1 |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plotBiGrams(type = "lollipop", n = 10)
+* plotnGrams(type = "lollipop", n = 10)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
@@ -778,7 +778,7 @@ lus_bigramas |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plotBiGrams(type = "heat", n = 50)
+* plotnGrams(type = "heat", n = 50)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;

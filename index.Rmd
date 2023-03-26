@@ -467,7 +467,7 @@ pt_lex |> sample_n(5)
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa() |> 
-  biGramTbl() #<<
+  nGramTbl(n = 2) #<<
 ```
 
 ```{r, echo = F}
@@ -481,14 +481,14 @@ lus_bigramas |>
 --
 
 .pull-right[
-- <mark>`biGramTbl()`</mark> $\rightarrow$ all bigrams
+- <mark>`nGramTbl()`</mark> $\rightarrow$ all bigrams
 - Now it's easy to plot patterns
 
 
 ### Visualizing bigrams
 
-- Together with `biGramTbl()`:
-- <mark>`plotBiGrams()`</mark> $\rightarrow$ figures with `ggplot2`
+- Together with `nGramTbl()`:
+- <mark>`plotnGrams()`</mark> $\rightarrow$ figures with `ggplot2`
 
 
 - Two options:
@@ -505,7 +505,7 @@ lus_bigramas |>
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plotBiGrams(type = "lollipop", n = 10) #<<
+  plotnGrams(type = "lollipop", n = 10) #<<
 ```
 ]
 
@@ -514,7 +514,7 @@ lus_bigramas |>
 .pull-right[
 ```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plotBiGrams(type = "heat", n = 50) #<<
+  plotnGrams(type = "heat", n = 50) #<<
 ```
 ]
 

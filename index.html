@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xd9ea2fffd3d43dfa8f515ff923f610f","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xdc073dbb7e643e4a02fdf4de3050b7c","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -183,7 +183,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
 ```
 
 --
@@ -206,7 +206,7 @@ ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
 #&gt; [1] "ki.ˈzɛ.se.mʊs"
 ipa_pt("parangaricutirrimirruaro", narrow = T)
-#&gt; [1] "ˌpa.ɾãŋ.ˌga.ɾi.ˌku.t͡ʃi.ˌxi.mi.ˈxu.a.ɾʊ"
+#&gt; [1] "pa.ˌɾãŋ.ga.ˌɾi.ku.ˌt͡ʃi.xi.ˌmi.xu.ˈa.ɾʊ"
 ```
 
 - **Not vectorized** (i.e., serial): ideal for *one* input
@@ -218,22 +218,22 @@ ipa_pt("parangaricutirrimirruaro", narrow = T)
 ## Example 3: transcription *en masse*
 
 - &lt;h-l&gt;Crucial&lt;/h-l&gt;: being able to transcribe a lot of words *quickly*
-- `ipa_pt_vec(...)`: vectorized
+- `ipa(...)`: vectorized (&lt;h-l&gt;Portuguese and Spanish&lt;/h-l&gt;)
 
 
 
 ```r
-ipa_pt_vec(word = c("Example", "com", "múltiplas", "palavras"))
+ipa(word = c("Example", "com", "múltiplas", "palavras"))
 #&gt; [1] "e.ˈzam.ple"   "ˈkom"         "ˈmul.ti.plas" "pa.ˈla.vɾas"
 ```
 
 --
 
-- Narrow transcription also available:
+- Narrow transcription also available (for Portuguese only):
 
 
 ```r
-ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+ipa(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
 #&gt; [1] "ˌẽj̃ɲ.kõn.ˈtɾã.mʊs" "ˌtɾãns.kɾi.ˈsãw̃"   "fo.ˈnɛ.t͡ʃi.kɐ"    
 #&gt; [4] "ˈfĩ.nɐ"            "tãm.ˈbẽj̃ɲ"
 ```
@@ -246,7 +246,7 @@ ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "també
 
 ## Example 4: short text 💬
 
-- `ipa_pt_vec()` requires tokenized inputs
+- `ipa()` requires tokenized inputs
 - What if our input is a text...?
 - &lt;mark&gt;`cleanText()`&lt;/mark&gt;: data cleaning and tokenization
 
@@ -258,7 +258,7 @@ text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 text |&gt; 
 * cleanText() |&gt;
-  ipa_pt_vec()
+  ipa()
 #&gt;  [1] "ˈes.te"          "ˈɛ"              "ˈum"             "ˈtes.to"        
 #&gt;  [5] "bas.ˈtan.te"     "ˈkuɾ.to"         "ˈke"             "ˈnãw̃"           
 #&gt;  [9] "es.ˈta"          "to.ke.ni.ˈza.do"
@@ -275,7 +275,7 @@ text |&gt;
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 d = tibble(word = text |&gt; cleanText()) |&gt; # Words
-  mutate(ipa = word |&gt; ipa_pt_vec()) # IPA
+  mutate(ipa = word |&gt; ipa()) # IPA
 ```
 
 --
@@ -320,8 +320,9 @@ d = tibble(word = text |&gt; cleanText()) |&gt; # Words
 ## Example 6: from long text to tibble 📚
 
 - `getStress()`: extracts stress from transcription
+- `getWeight()`: extracts weight profile (e.g., `LLH`)
 - `getSyl()`: extracts a given syllable
-- `stopwords_pt`: stopwords in Portuguese (adapted from `tm` package)
+- `stopwords_pt` and `stopwords_sp`: stopwords in (adapted from `tm` package)
 - &lt;mark&gt;`syllable()`&lt;/mark&gt;: extracts syllabic constituents
 
 
@@ -333,7 +334,7 @@ lus2 = lus1 |&gt;
   as_tibble() |&gt; 
   rename(word = value) |&gt; 
   filter(!word %in% stopwords_pt) |&gt; # stopword removal
-  mutate(ipa = ipa_pt_vec(word), # column for transcription
+  mutate(ipa = ipa(word), # column for transcription
          stress = getStress(ipa), # column for stress
          finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
 *        onsetFin = syllable(finSyl, const = "onset"),
@@ -471,7 +472,7 @@ syllables |&gt;
 
 ```r
 "combradol" |&gt; 
-  ipa_pt() |&gt; 
+  ipa() |&gt; 
 * plotSon(syl = F)
 ```
 
@@ -484,8 +485,8 @@ syllables |&gt;
 
 
 ```r
-"pontilhonde" |&gt; 
-  ipa_pt() |&gt; 
+"sobremesa" |&gt; 
+  ipa(lg = "Spanish") |&gt; 
 * plotSon(syl = T)
 ```
 
@@ -662,7 +663,7 @@ pt_lex |&gt; sample_n(5)
 ```r
 lus_bigramas = lus1 |&gt; 
   cleanText() |&gt; 
-  ipa_pt_vec() |&gt; 
+  ipa() |&gt; 
 * biGramTbl()
 ```
 
@@ -822,7 +823,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 
 ```r
-ipa_pt("obrigado") |&gt; 
+ipa("obrigado") |&gt; 
   plotSon(syl = T)
 ```
 

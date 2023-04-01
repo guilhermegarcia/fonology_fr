@@ -146,7 +146,7 @@ class: inverse, center, middle
 # Main functions
 
 
-<img src="cat.gif" alt="pipe" style="width:30%;">
+<img src="cat.gif" alt="IT cat" style="width:30%;">
 
 ---
 
@@ -202,7 +202,9 @@ ipa(word = c("Example", "com", "múltiplas", "palavras"))
 - Narrow transcription also available (for Portuguese only):
 
 ```{r, echo = TRUE}
-ipa(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+ipa(word = c("Encontramos", "transcrição", 
+             "fonética", "fina", "também"), 
+    narrow = T)
 ```
 
 - **Vectorized** function (i.e., parallel): ideal for a lot of data

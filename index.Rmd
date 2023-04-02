@@ -258,11 +258,25 @@ d |>
 
 ## Example 6: from long text to tibble 📚
 
+### Tarefa
+
+1. Import *Os Lusíadas*, clean and tokenize text
+2. Transcribe, syllabify, stress lexical words
+3. Extract stress and final syllable
+4. Extract final syllable constituents
+
+--
+
 - `getStress()`: extracts stress from transcription
 - `getWeight()`: extracts weight profile (e.g., `LLH`)
 - `getSyl()`: extracts a given syllable
+- `syllable()`: extracts syllabic constituents
 - `stopwords_pt` and `stopwords_sp`: stopwords in (adapted from `tm` package)
-- <mark>`syllable()`</mark>: extracts syllabic constituents
+
+
+---
+
+## Example 6: from long text to tibble 📚
 
 ```{r, echo = T}
 lus1 = read_lines("lusiadas.txt") # "Os Lusíadas" text
@@ -274,11 +288,12 @@ lus2 = lus1 |>
   filter(!word %in% stopwords_pt) |> # stopword removal
   mutate(ipa = ipa(word), # column for transcription
          stress = getStress(ipa), # column for stress
+         weight = getWeight(ipa), # outra para o peso
          finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
-         onsetFin = syllable(finSyl, const = "onset"), #<<
-         nucFin = syllable(finSyl, const = "nucleus"), #<<
-         codaFin = syllable(finSyl, const = "coda"), #<<
-         rhFin = syllable(finSyl, const = "rhyme")) #<<
+         onsetFin = syllable(finSyl, const = "onset"),
+         nucFin = syllable(finSyl, const = "nucleus"),
+         codaFin = syllable(finSyl, const = "coda"),
+         rhFin = syllable(finSyl, const = "rhyme"))
 ```
 
 
@@ -296,13 +311,7 @@ lus2 |>
 
 - Total number of lexical words: `r nrow(lus2)` (⏱️ total time to run code above: **< 2s**)
 
----
-
-## Example 6: from long text to tibble 📚
-
-```{r, echo = TRUE}
-"praia" |> ipa() |> getSyl(pos = 1) |> syllable(const = "nucleus")
-```
+--
 
 - Should we count glides as onsets, codas... nuclei❓ 
 

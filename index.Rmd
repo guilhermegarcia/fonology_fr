@@ -287,11 +287,10 @@ lus2 = lus1 |>
 ## Example 6: from long text to tibble 📚
 
 ```{r, echo = F}
-library(DT)
-DT::datatable(head(lus2, 10),
-              fillContainer = FALSE,
-              options = list(pageLength = 5,
-                             lengthMenu = list(c(5))))
+lus2 |>
+  slice(1:5) |>
+  kable(booktabs = T) |>
+  kable_styling()
 ```
 
 

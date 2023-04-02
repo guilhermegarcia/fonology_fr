@@ -287,18 +287,25 @@ lus2 = lus1 |>
 ## Example 6: from long text to tibble 📚
 
 ```{r, echo = F}
-lus2 |> 
-  slice(1:5) |> 
-  kable(booktabs = T) |> 
-  kable_styling()
+library(DT)
+DT::datatable(head(lus2, 10),
+              fillContainer = FALSE,
+              options = list(pageLength = 5,
+                             lengthMenu = list(c(5))))
 ```
 
---
 
 - Total number of lexical words: `r nrow(lus2)` (⏱️ total time to run code above: **< 2s**)
-- Should we count glides as onsets, ocdas... nuclei❓ 
 
---
+---
+
+## Example 6: from long text to tibble 📚
+
+```{r, echo = TRUE}
+"praia" |> ipa() |> getSyl(pos = 1) |> syllable(const = "nucleus")
+```
+
+- Should we count glides as onsets, codas... nuclei❓ 
 
 <div align = "center">
 <img src="syllable.png" alt="syllable" style="width:80%;">

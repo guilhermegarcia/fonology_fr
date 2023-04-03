@@ -282,17 +282,17 @@ d |>
 ## Example 6: from long text to tibble 📚
 
 ```{r, echo = T}
-lus1 = read_lines("lusiadas.txt") # "Os Lusíadas" text
+lus1 = read_lines("lusiadas.txt")                        # "Os Lusíadas" text
 
 lus2 = lus1 |> 
-  cleanText() |> # data cleaning + tokenization
+  cleanText() |>                                         # data cleaning + tokenization
   as_tibble() |> 
   rename(word = value) |> 
-  filter(!word %in% stopwords_pt) |> # stopword removal
-  mutate(ipa = ipa(word), # column for transcription
-         stress = getStress(ipa), # column for stress
-         weight = getWeight(ipa), # outra para o peso
-         finSyl = getSyl(word = ipa, pos = 1), # column for final syllable
+  filter(!word %in% stopwords_pt) |>                     # stopword removal
+  mutate(ipa = ipa(word),                                # column for transcription
+         stress = getStress(ipa),                        # column for stress
+         weight = getWeight(ipa),                        # outra para o peso
+         finSyl = getSyl(word = ipa, pos = 1),           # column for final syllable
          onsetFin = syllable(finSyl, const = "onset"),
          nucFin = syllable(finSyl, const = "nucleus"),
          codaFin = syllable(finSyl, const = "coda"),

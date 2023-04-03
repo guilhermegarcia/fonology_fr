@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"c5df4c2448fa44b4bf8aad973093de2a","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x83542cd04834133ae9fceeaa6134e48","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -209,7 +209,7 @@ ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
 #&gt; [1] "ki.ˈzɛ.se.mʊs"
 ipa_pt("parangaricutirrimirruaro", narrow = T)
-#&gt; [1] "ˌpa.ɾãŋ.ˌga.ɾi.ˌku.t͡ʃi.ˌxi.mi.ˈxu.a.ɾʊ"
+#&gt; [1] "pa.ˌɾãŋ.ga.ˌɾi.ku.ˌt͡ʃi.xi.ˌmi.xu.ˈa.ɾʊ"
 ```
 
 - **Not vectorized** (i.e., serial): ideal for *one* input
@@ -346,7 +346,7 @@ d = tibble(word = text |&gt; cleanText()) |&gt; # Words
 
 
 ```r
-lus1 = read_lines("lusiadas.txt")                        # "Os Lusíadas" text
+lus1 = read_lines("lusiadas.txt")                        
 
 lus2 = lus1 |&gt; 
   cleanText() |&gt;                                         # data cleaning + tokenization

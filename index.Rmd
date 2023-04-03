@@ -282,7 +282,7 @@ d |>
 ## Example 6: from long text to tibble 📚
 
 ```{r, echo = T}
-lus1 = read_lines("lusiadas.txt")                        # "Os Lusíadas" text
+lus1 = read_lines("lusiadas.txt")                        
 
 lus2 = lus1 |> 
   cleanText() |>                                         # data cleaning + tokenization

@@ -123,6 +123,9 @@ install_github("guilhermegarcia/fonology")
 --
 
 7. Vowel formants + `ggplot2` (simple *wrapper*)
+--
+
+8. From IPA to TIPA
 
 
 --

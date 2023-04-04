@@ -148,9 +148,6 @@ class: inverse, center, middle
 
 # Main functions
 
-
-<img src="cat.gif" alt="IT cat" style="width:30%;">
-
 ---
 
 ## Example 1: broad transcription

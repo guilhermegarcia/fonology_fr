@@ -104,7 +104,7 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## Road map
+## Road map 🗺️
 
 ### Demo of main functions:
 
@@ -178,7 +178,7 @@ ipa_pt("parangaricutirrimirruaro")
 
 - `ipa_pt(..., narrow = T)`
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache = TRUE}
 ipa_pt("concentração", narrow = T)
 ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
@@ -197,7 +197,7 @@ ipa_pt("parangaricutirrimirruaro", narrow = T)
 - `ipa(...)`: vectorized (<h-l>Portuguese and Spanish</h-l>)
 
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache = TRUE}
 ipa(word = c("Example", "com", "múltiplas", "palavras"))
 ```
 
@@ -205,7 +205,7 @@ ipa(word = c("Example", "com", "múltiplas", "palavras"))
 
 - Narrow transcription also available (for Portuguese only):
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache = TRUE}
 ipa(word = c("Encontramos", "transcrição", 
              "fonética", "fina", "também"), 
     narrow = T)
@@ -223,7 +223,7 @@ ipa(word = c("Encontramos", "transcrição",
 - What if our input is a text...?
 - <mark>`cleanText()`</mark>: data cleaning and tokenization
 
-```{r, echo = TRUE, message = F, tidy=FALSE}
+```{r, echo = TRUE, message = F, tidy=FALSE, cache = TRUE}
 library(tidyverse)
 # Sample sentence in Portuguese with some weird stuff in it:
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
@@ -240,7 +240,7 @@ text |>
 
 - We often work with *data frames* or *tibbles*
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache = TRUE}
 text = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 d = tibble(word = text |> cleanText()) |> # Words
@@ -250,7 +250,7 @@ d = tibble(word = text |> cleanText()) |> # Words
 
 --
 
-```{r, echo = F, message = F}
+```{r, echo = F, message = F, cache = TRUE}
 library(kableExtra)
 d |> 
   slice(1:6) |> 
@@ -282,7 +282,7 @@ d |>
 
 ## Example 6: from long text to tibble 📚
 
-```{r, echo = T}
+```{r, echo = T, cache = TRUE}
 lus1 = read_lines("lusiadas.txt")                        
 
 lus2 = lus1 |> 
@@ -305,7 +305,7 @@ lus2 = lus1 |>
 
 ## Example 6: from long text to tibble 📚
 
-```{r, echo = F}
+```{r, echo = F, cache = TRUE}
 lus2 |>
   slice(1:5) |>
   kable(booktabs = T) |>
@@ -313,7 +313,7 @@ lus2 |>
 ```
 
 
-- Total number of lexical words: `r nrow(lus2)` (⏱️ total time to run code above: **< 2s**)
+- Total number of lexical words: `r nrow(lus2)` (⏳ **< 2s**)
 
 --
 
@@ -362,7 +362,7 @@ syllables |>
 
 .pull-left[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache = TRUE}
 "combradol" |> 
   ipa() |> 
   plotSon(syl = F) #<<
@@ -373,7 +373,7 @@ syllables |>
 
 .pull-right[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache = TRUE}
 "sobremesa" |> 
   ipa(lg = "Spanish") |> 
   plotSon(syl = T) #<<
@@ -389,7 +389,7 @@ syllables |>
 
 .pull-left[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache = TRUE}
 plotVowels(lg = "Spanish", 
            tex = F) #<<
 ```
@@ -399,7 +399,7 @@ plotVowels(lg = "Spanish",
 
 .pull-right[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache = TRUE}
 plotVowels(lg = "Italian", 
            tex = F) #<<
 ```
@@ -412,7 +412,7 @@ plotVowels(lg = "Italian",
 
 - From phonemes to traits $\rightarrow$ `getFeat()`:
 
-```{r}
+```{r, cache = TRUE}
 getFeat(ph = c("i", "u"), lg = "English")
 getFeat(ph = c("p", "b"), lg = "French")
 getFeat(ph = c("i", "y", "u"), lg = "French")
@@ -422,7 +422,7 @@ getFeat(ph = c("i", "y", "u"), lg = "French")
 
 - From traits to phonemes $\rightarrow$ `getPhon()`:
 
-```{r}
+```{r, cache = TRUE}
 getPhon(ft = c("+syl", "+hi"), lg = "French")
 getPhon(ft = c("-DR", "-cont", "-son"), lg = "English")
 getPhon(ft = c("-son", "+vce"), lg = "Spanish")
@@ -434,7 +434,7 @@ getPhon(ft = c("-son", "+vce"), lg = "Spanish")
 
 - `wug_pt()` creates possible words in Portuguese
 
-```{r}
+```{r, cache = TRUE}
 set.seed(1)
 wug_pt(profile = "LHL")
 ```
@@ -443,7 +443,7 @@ wug_pt(profile = "LHL")
 
 - Let's create a tibble with 8 new words + their phonotactic probability with <mark>`biGram_pt()`</mark>:
 
-```{r, message = F}
+```{r, message = F, cache = TRUE}
 set.seed(1)
 gen = tibble(word = wug_pt("LHL", n = 8)) |> 
   mutate(bigram = word |> 
@@ -458,7 +458,7 @@ gen = tibble(word = wug_pt("LHL", n = 8)) |>
 .pull-left[
 - Lower bigram values $\rightarrow$ less probable
 
-```{r, echo = F}
+```{r, echo = F, cache = TRUE}
 gen |> 
   arrange(desc(bigram)) |> 
   kable(booktabs = T) |> 
@@ -473,7 +473,7 @@ gen |>
 - Access the simplified version of the lexicon with `pt_lex`
 - Or the whole lexicon with `psl`
 
-```{r}
+```{r, cache = TRUE}
 set.seed(1)
 pt_lex |> sample_n(5)
 ```
@@ -484,14 +484,14 @@ pt_lex |> sample_n(5)
 ## Example 12: Listing bigrams 🎲
 
 .pull-left[
-```{r, echo = T}
+```{r, echo = T, cache = TRUE}
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa() |> 
   nGramTbl(n = 2) #<<
 ```
 
-```{r, echo = F}
+```{r, echo = F, cache = TRUE}
 lus_bigramas |> 
   slice(1:8) |> 
   kable(booktabs = T) |> 
@@ -524,7 +524,7 @@ lus_bigramas |>
 ## Example 12: Visualizing bigrams 🎲
 
 .pull-left[
-```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800, cache = TRUE}
 lus_bigramas |> 
   plotnGrams(type = "lollipop", n = 10) #<<
 ```
@@ -533,7 +533,7 @@ lus_bigramas |>
 --
 
 .pull-right[
-```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800, cache = TRUE}
 lus_bigramas |> 
   plotnGrams(type = "heat", n = 50) #<<
 ```
@@ -547,7 +547,7 @@ lus_bigramas |>
 
 - A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values): 
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", cache = TRUE}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
   geom_text() +
   theme_classic() + theme(legend.position = "none")
@@ -559,7 +559,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 - A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values): 
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", cache = TRUE}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
   geom_text() +
   theme_classic() + theme(legend.position = "none") +
@@ -568,14 +568,14 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Example 14: from IPA to TIPA
+## Example 14: from IPA to TIPA ✏️
 
 - If you use $\LaTeX$, `tipa` is essential
 - The function `ipa2tipa()` translates an IPA sequence into `tipa`:
 
 --
 
-```{r}
+```{r, cache = TRUE}
 "Aqui está uma frase que desejo transcrever fonemicamente" |> 
   cleanText() |> 
   ipa(narrow = T) |> 
@@ -592,9 +592,9 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 ---
 
 
-# Questions?
+# Questions? 😶‍🌫️
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE, cache = TRUE}
 ipa("obrigado") |> 
   plotSon(syl = T)
 ```

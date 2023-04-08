@@ -539,7 +539,26 @@ lus_bigramas |>
 ```
 ]
 
+
 ---
+
+## Example 12: Visualizing bigrams 🎲
+
+- Network with top 50 bigrams from *Os Lusiádas* with `networkD3` (excluding `#`)
+
+<br>
+
+```{r, cache=TRUE, echo=FALSE, results='asis'}
+# library(knitr)
+# Embed D3 figure into Rmarkdown slides using iframe
+htmltools::tags$div(
+  htmltools::tags$iframe(src = "my_network.html", height = 450, width = "70%", class = "d3-figure"),
+  class = "iframe-container"
+)
+
+```
+---
+
 
 
 

@@ -15,3 +15,13 @@ h-l {
 pre, code {
   font-family:"Fira Code", "Monaco", monospace !important;
 }
+
+/* Center the contents of the iframe */
+div.iframe-container {
+  text-align: center;
+}
+
+/* Remove the iframe border */
+iframe.d3-figure {
+  border: none;
+}

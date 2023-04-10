@@ -16,11 +16,13 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xfba56574008407a88b902e72701292e","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x7978b9372c145dc9d3dd418d31dcc5b","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
     <script src="libs/editable/editable.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -182,7 +184,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
 ```
 
 --
@@ -320,7 +322,7 @@ d = tibble(word = text |&gt; cleanText()) |&gt; # Words
 
 ## Example 6: from long text to tibble 📚
 
-### Tarefa
+### Task
 
 1. Import *Os Lusíadas*, clean and tokenize text
 2. Transcribe, syllabify, stress lexical words
@@ -340,6 +342,8 @@ d = tibble(word = text |&gt; cleanText()) |&gt; # Words
 
 ## Example 6: from long text to tibble 📚
 
+.panelset[
+.panel[.panel-name[Code]
 
 ```r
 lus1 = read_lines("lusiadas.txt")                        
@@ -351,7 +355,7 @@ lus2 = lus1 |&gt;
   filter(!word %in% stopwords_pt) |&gt;                     # stopword removal
   mutate(ipa = ipa(word),                                # column for transcription
          stress = getStress(ipa),                        # column for stress
-         weight = getWeight(ipa),                        # outra para o peso
+         weight = getWeight(ipa),                        # column for weight
          finSyl = getSyl(word = ipa, pos = 1),           # column for final syllable
          onsetFin = syllable(finSyl, const = "onset"),
          nucFin = syllable(finSyl, const = "nucleus"),
@@ -359,10 +363,14 @@ lus2 = lus1 |&gt;
          rhFin = syllable(finSyl, const = "rhyme"))
 ```
 
+]
 
----
+.panel[.panel-name[Result]
 
-## Example 6: from long text to tibble 📚
+- Total number of lexical words 32618 (⏳ **&lt; 2s**)
+- *Tidy data* format ready for analysis
+
+&lt;br&gt;
 
 &lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -436,17 +444,22 @@ lus2 = lus1 |&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
+
+.panel[.panel-name[Glides?]
 
 
-- Total number of lexical words: 32618 (⏳ **&lt; 2s**)
+- Are glides onsets, codas, or are they in the nucleus...❓ 
+- The function `syllable()` allows us to adjust our assumptions:
 
---
-
-- Should we count glides as onsets, codas... nuclei❓ 
+&lt;br&gt;
 
 &lt;div align = "center"&gt;
 &lt;img src="syllable.png" alt="syllable" style="width:80%;"&gt;
 &lt;/div&gt;
+
+]
+]
 
 ---
 

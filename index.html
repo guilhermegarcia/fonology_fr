@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x7978b9372c145dc9d3dd418d31dcc5b","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf60d8ea1d224a44b33bd3001d1eacbb","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -184,7 +184,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
 ```
 
 --
@@ -465,22 +465,18 @@ lus2 = lus1 |&gt;
 
 ## Example 7: sonority 🔉
 
-- `demi(word = ..., d = ...)`: extraction of demisyllables (`d` = `1` or `2`)
+- `demi(word = ..., d = ...)`: extraction of demisyllables (`d = 1` or `d = 2`)
 
 
 ```r
 syllables = c("kom", "sil", "fran", "klas")
 
-demis = syllables |&gt; 
+syllables |&gt; 
   demi(d = 1) # get first demisyllable
-
-demis
 #&gt; [1] "ko"  "si"  "fra" "kla"
 ```
 
----
-
-## Example 7: sonority 🔉
+--
 
 - We can also calculate the average sonority dispersion of a vector with `meanSonDisp()`:
 

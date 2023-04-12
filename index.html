@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf60d8ea1d224a44b33bd3001d1eacbb","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"b4b849b3eaec4a7e9283d83d51bf2cce","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -184,7 +184,7 @@ ipa_pt("tipos")
 ipa_pt("quiséssemos")
 #&gt; [1] "ki.ˈzɛ.se.mos"
 ipa_pt("parangaricutirrimirruaro")
-#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.ˈxu.a.ɾo"
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
 ```
 
 --
@@ -872,12 +872,12 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 
 ```r
-"Aqui está uma frase que desejo transcrever fonemicamente" |&gt; 
+"Aqui estão algumas palavras que desejo transcrever" |&gt; 
   cleanText() |&gt; 
   ipa(narrow = T) |&gt; 
   ipa2tipa(pre = "[ ", post = " ]")
 #&gt; Done! Here's your tex code using TIPA:
-#&gt; \textipa{ [ a."ki es."ta "u.m5 "fRa.zI "ke de."ze.ZU {""}tR\~{a}ns.kRe."veR {""}fo.ne.{""}mi.ka."m\~{e}\~{j}{\textltailn}.\t{tS}{\r*{I}} ] }
+#&gt; \textipa{ [ a."ki es."t\~{a}\~{w} aw."g\~{u}.m5s pa."la.vR5s "ke de."ze.ZU {""}tR\~{a}ns.kRe."veR ] }
 ```
 
 --

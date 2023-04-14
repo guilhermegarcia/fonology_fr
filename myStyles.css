@@ -24,8 +24,9 @@ div.iframe-container {
 /* Remove the iframe border */
 iframe.d3-figure {
   border: none;
+  display: block;
+  margin: 0 auto;
 }
-
 
 /* Hide slide number on title slide */
 .title-slide .remark-slide-number {

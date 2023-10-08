@@ -63,10 +63,10 @@ xaringanExtra::use_extra_styles(
 ## Introduction
 
 <img src="fonology.png" alt="Fonology" style="width:15%; float: right">
-- Une extension R pour extaire des variables phonologiques des données écrites
+- Une extension R pour extraire des variables phonologiques des données écrites
 - Disponible sur [fr.gdgarcia.ca/fonology](https://fr.gdgarcia.ca/fonology) (en développement) 
 
-- **Cette présentation** : une démonstrations des fonctions principales
+- **Cette présentation** : une démonstration des principales fonctions
 
 --
 
@@ -83,7 +83,7 @@ xaringanExtra::use_extra_styles(
 
 ---
 
-## Installation etc. 🧐
+## Installation, etc. 🧐
 
 - Visitez [fr.gdgarcia.ca/fonology](https://gdgarcia.ca/fonology) 
 - Pour installer l'extension :
@@ -117,7 +117,7 @@ install_github("guilhermegarcia/fonology")
 4. Le trapèze vocalique
 --
 
-5. Les calsses naturelles
+5. Les classes naturelles
 --
 
 6. Le générateur de mots + probabilité phonotactique
@@ -128,7 +128,7 @@ install_github("guilhermegarcia/fonology")
 
 <br>
 
-> *Peu de choses peuvent êtres faites sans la conversion graphème-phonème*
+> *Peu de choses peuvent être faites sans la conversion graphème-phonème*
 
 <br>
 - <h-l>Les données écrites</h-l> : facile de trouver et de collecter; difficile à analyser
@@ -323,13 +323,13 @@ lus2 |>
 
 ## Exemple 7 : sonorité 🔉
 
-- `demi(word = ..., d = ...)`: extraction de demi syllabes (`d = 1` ou `d = 2`)
+- `demi(word = ..., d = ...)`: extraction de demi-syllabes (`d = 1` ou `d = 2`)
 
 ```{r}
 syllables = c("kom", "sil", "fran", "klas")
 
 syllables |> 
-  demi(d = 1) # get first demisyllable
+  demi(d = 1) # extraire la première demi-syllabe
 ```
 
 --
@@ -412,7 +412,7 @@ getFeat(ph = c("i", "y", "u"), lg = "French")
 
 --
 
-- Des traits distinctifs au phonèmes $\rightarrow$ `getPhon()` :
+- Des traits distinctifs aux phonèmes $\rightarrow$ `getPhon()` :
 
 ```{r, cache = TRUE}
 getPhon(ft = c("+syl", "+hi"), lg = "French")
@@ -422,7 +422,7 @@ getPhon(ft = c("-son", "+vce"), lg = "Spanish")
 
 ---
 
-## Exemple 11 : générateur de mots + probabilité phonotaxique 🎲
+## Exemple 11 : générateur de mots + probabilité phonotactique 🎲
 
 - `wug_pt()` génère des mots possibles en portugais
 
@@ -433,7 +433,7 @@ wug_pt(profile = "LHL")
 
 --
 
-- Un *tibble* avec 8 nouveaux mots + leurs probabilités phonotaxiques avec <mark>`biGram_pt()`</mark> :
+- Un *tibble* avec 8 nouveaux mots + leurs probabilités phonotactiques avec <mark>`biGram_pt()`</mark> :
 
 ```{r, message = F, cache = TRUE}
 set.seed(1)
@@ -445,7 +445,7 @@ gen = tibble(word = wug_pt("LHL", n = 8)) |>
 
 ---
 
-## Exemple 11 : générateur de mots + probabilité phonotaxique 🎲
+## Exemple 11 : générateur de mots + probabilité phonotactique 🎲
 
 .pull-left[
 - Bigrammes :

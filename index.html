@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xebcd641a8594ef4be1c994b4561ccdb","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"dcf7a45f855e4779890365c80ebbfc95","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -76,10 +76,10 @@ class: title-slide, inverse, center, middle
 ## Introduction
 
 &lt;img src="fonology.png" alt="Fonology" style="width:15%; float: right"&gt;
-- Une extension R pour extaire des variables phonologiques des données écrites
+- Une extension R pour extraire des variables phonologiques des données écrites
 - Disponible sur [fr.gdgarcia.ca/fonology](https://fr.gdgarcia.ca/fonology) (en développement) 
 
-- **Cette présentation** : une démonstrations des fonctions principales
+- **Cette présentation** : une démonstration des principales fonctions
 
 --
 
@@ -96,7 +96,7 @@ class: title-slide, inverse, center, middle
 
 ---
 
-## Installation etc. 🧐
+## Installation, etc. 🧐
 
 - Visitez [fr.gdgarcia.ca/fonology](https://gdgarcia.ca/fonology) 
 - Pour installer l'extension :
@@ -131,7 +131,7 @@ install_github("guilhermegarcia/fonology")
 4. Le trapèze vocalique
 --
 
-5. Les calsses naturelles
+5. Les classes naturelles
 --
 
 6. Le générateur de mots + probabilité phonotactique
@@ -142,7 +142,7 @@ install_github("guilhermegarcia/fonology")
 
 &lt;br&gt;
 
-&gt; *Peu de choses peuvent êtres faites sans la conversion graphème-phonème*
+&gt; *Peu de choses peuvent être faites sans la conversion graphème-phonème*
 
 &lt;br&gt;
 - &lt;h-l&gt;Les données écrites&lt;/h-l&gt; : facile de trouver et de collecter; difficile à analyser
@@ -449,14 +449,14 @@ lus2 = lus1 |&gt;
 
 ## Exemple 7 : sonorité 🔉
 
-- `demi(word = ..., d = ...)`: extraction de demi syllabes (`d = 1` ou `d = 2`)
+- `demi(word = ..., d = ...)`: extraction de demi-syllabes (`d = 1` ou `d = 2`)
 
 
 ```r
 syllables = c("kom", "sil", "fran", "klas")
 
 syllables |&gt; 
-  demi(d = 1) # get first demisyllable
+  demi(d = 1) # extraire la première demi-syllabe
 #&gt; [1] "ko"  "si"  "fra" "kla"
 ```
 
@@ -558,7 +558,7 @@ getFeat(ph = c("i", "y", "u"), lg = "French")
 
 --
 
-- Des traits distinctifs au phonèmes `\(\rightarrow\)` `getPhon()` :
+- Des traits distinctifs aux phonèmes `\(\rightarrow\)` `getPhon()` :
 
 
 ```r
@@ -572,7 +572,7 @@ getPhon(ft = c("-son", "+vce"), lg = "Spanish")
 
 ---
 
-## Exemple 11 : générateur de mots + probabilité phonotaxique 🎲
+## Exemple 11 : générateur de mots + probabilité phonotactique 🎲
 
 - `wug_pt()` génère des mots possibles en portugais
 
@@ -585,7 +585,7 @@ wug_pt(profile = "LHL")
 
 --
 
-- Un *tibble* avec 8 nouveaux mots + leurs probabilités phonotaxiques avec &lt;mark&gt;`biGram_pt()`&lt;/mark&gt; :
+- Un *tibble* avec 8 nouveaux mots + leurs probabilités phonotactiques avec &lt;mark&gt;`biGram_pt()`&lt;/mark&gt; :
 
 
 ```r
@@ -598,7 +598,7 @@ gen = tibble(word = wug_pt("LHL", n = 8)) |&gt;
 
 ---
 
-## Exemple 11 : générateur de mots + probabilité phonotaxique 🎲
+## Exemple 11 : générateur de mots + probabilité phonotactique 🎲
 
 .pull-left[
 - Bigrammes :

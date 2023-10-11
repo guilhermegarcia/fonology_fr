@@ -41,8 +41,6 @@ class: title-slide, inverse, center, middle
 
 #### Université Laval • CRBLM • CRIHN
 
-#### Colloque du CRIHN • 11 octobre 2023
-
 ---
 
 ```{r xaringanExtra, echo=FALSE}
@@ -555,7 +553,7 @@ htmltools::tags$div(
 
 ## Exemple 13 : vowel plot 🗣️
 
-- A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values): 
+- A simple *wrapper* for F1/F2 in `ggplot2`. Example with `vowels` (hypothetical values) : 
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", cache = TRUE}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
